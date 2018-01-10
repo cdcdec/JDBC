@@ -19,32 +19,37 @@ public class JdbcMain {
 		String name;
 		String mac;
 		num = scanner.nextInt();
+		String strName;
+		String strMac;
+		String strPassword;
+		String strLoginno;
+		String strTerminalid;
         switch(num){
         case 1:
         	System.out.println("請輸入用戶名:");
         	name=scanner.next();
         	String sql="select userno,password,macno,TB_MCTM_USER_TERMINAL.TER_LOGINNO,TB_MCTM_USER_TERMINAL.TERMINALID from C_USERINFO,TB_MCTM_USER_TERMINAL where C_USERINFO.userno=TB_MCTM_USER_TERMINAL.userid and C_USERINFO.userno= ? ";
         	ResultSet result=JDBCOracleUtil.getJDBCUtil().executeQuery(sql, name);
-        	StringBuilder stringBuilder=new StringBuilder();
         	try {
-				while(result.next()){
-					stringBuilder.append("用戶名:");
-					stringBuilder.append(result.getString(1));
-					stringBuilder.append(",密码:");
-					stringBuilder.append(result.getString(2));
-					stringBuilder.append(",mac:");
-					stringBuilder.append(result.getString(3));
-					stringBuilder.append(",loginno:");
-					stringBuilder.append(result.getString(4));
-					stringBuilder.append(",terminalid:");
-					stringBuilder.append(result.getString(5));
-				}
-				if(stringBuilder.length()>0){
-					System.out.println(stringBuilder.toString());
+				if(result.next()){
+					strName=result.getString(1);
+					strMac=result.getString(2);
+					strPassword=result.getString(3);
+					strLoginno=result.getString(4);
+					strTerminalid=result.getString(5);
+					System.out.println("=========用户名=========");
+					System.out.println(strName);
+					System.out.println("=========密码=========");
+					System.out.println(strPassword);
+					System.out.println("=========mac=========");
+					System.out.println(strMac);
+					System.out.println("=========loginno=========");
+					System.out.println(strLoginno);
+					System.out.println("=========terminalid=========");
+					System.out.println(strTerminalid);
 				}else{
 					System.out.println("查不到相关的信息");
 				}
-				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -63,22 +68,23 @@ public class JdbcMain {
         	mac=scanner.next();
         	String sqlMac="select userno,password,macno,TB_MCTM_USER_TERMINAL.TER_LOGINNO,TB_MCTM_USER_TERMINAL.TERMINALID from C_USERINFO,TB_MCTM_USER_TERMINAL where C_USERINFO.userno=TB_MCTM_USER_TERMINAL.userid and TB_MCTM_USER_TERMINAL.macno= ? ";
         	ResultSet resultMac=JDBCOracleUtil.getJDBCUtil().executeQuery(sqlMac, mac);
-        	StringBuilder stringBuilderMac=new StringBuilder();
         	try {
-				while(resultMac.next()){
-					stringBuilderMac.append("用戶名:");
-					stringBuilderMac.append(resultMac.getString(1));
-					stringBuilderMac.append(",密码:");
-					stringBuilderMac.append(resultMac.getString(2));
-					stringBuilderMac.append(",mac:");
-					stringBuilderMac.append(resultMac.getString(3));
-					stringBuilderMac.append(",loginno:");
-					stringBuilderMac.append(resultMac.getString(4));
-					stringBuilderMac.append(",terminalid:");
-					stringBuilderMac.append(resultMac.getString(5));
-				}
-				if(stringBuilderMac.length()>0){
-					System.out.println(stringBuilderMac.toString());
+        		if(resultMac.next()){
+					strName=resultMac.getString(1);
+					strMac=resultMac.getString(2);
+					strPassword=resultMac.getString(3);
+					strLoginno=resultMac.getString(4);
+					strTerminalid=resultMac.getString(5);
+					System.out.println("=========用户名=========");
+					System.out.println(strName);
+					System.out.println("=========密码=========");
+					System.out.println(strPassword);
+					System.out.println("=========mac=========");
+					System.out.println(strMac);
+					System.out.println("=========loginno=========");
+					System.out.println(strLoginno);
+					System.out.println("=========terminalid=========");
+					System.out.println(strTerminalid);
 				}else{
 					System.out.println("查不到相关的信息");
 				}
